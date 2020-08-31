@@ -1,14 +1,17 @@
-<?php $bg_url='img/bg1.jpg' ?>
+<?php $bg_url='img/bg1.jpg';?>
 
 <div class="jumbotron-fluid text-center bg-dark text-white" style="background:url('<?=$bg_url ?>');
   background-size: cover; background-position:center center; background-attachment:fixed;">
-  <div class="container"><?php include('echo_alert.php') ?></div>
   <div class="container" style="padding:5rem 0;">
-    <h1 id="head1" class="display-2 my-0 text-shadow-dark" >BOBO</h1>
-    <p  id="head2" class="lead text-shadow-dark" >foods Online Shop System</p>
-    <h5 id="head3" class="text-shadow-dark " style="letter-spacing:.5rem" >專業の食品購物系統</h5>
-    <div id="head4">
-      <button onclick="location.href='product.php'" class="btn btn-light mt-3 mr-1">去逛逛</button>
+    <h1 id="head1" class="display-2 my-0 text-shadow-dark" >BOBO銀行</h1>
+    <p  id="head2" class="lead text-shadow-dark" >Internet banking</p>
+    <h5 id="head3" class="text-shadow-dark " style="letter-spacing:.5rem" >不專業の網路銀行系統</h5>
+    <br>
+    <div class="  <?php if(isset($_SESSION['ID']))echo'd-none' ?>">
+    <button type="button" class="btn btn-outline-" data-toggle="modal" data-target="#loginModal">請先登入</button>
+    </div>
+    <div class="  <?php if(!isset($_SESSION['ID']))echo'd-none' ?>">
+    <h1>您好！<?=$user_name ?></h1>
     </div>
   </div>
 </div>

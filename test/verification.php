@@ -24,4 +24,5 @@ if(isset($_SESSION['ID'])){ // 若已登入
   $user_birth = $rows['Birth'];       // 生日
   $user_gender = $rows['Gender'];     // 性別
   $user_address = $rows['Address'];   // 地址
+  $user_money = $rows['Money'];   // 存款
 }

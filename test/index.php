@@ -11,7 +11,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <!-- 引入CSS等樣式內容 -->
   <?php include('style.php') ?>
-  <title><?php echo title_name ?></title>
+  <title>BOBO銀行</title>
   <?php require_once ('js.php') ?>
 </head>
 

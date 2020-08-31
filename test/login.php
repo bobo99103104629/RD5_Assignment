@@ -36,6 +36,10 @@
     </div>
   </div>
 </div>
+   
+
+
+
 
 <!-- 登入JQ -->
 <script type="text/javascript">
@@ -51,7 +55,7 @@ $("#login").click(function(){
     if(data=='success'){
       $('.login-panel').empty().html('<div class="col-12 text-center my-3 text-success"><i class="material-icons text-success" style="font-size:5rem">done</i><h5>成功登入!</h5></div>');
       // 等待一秒後刷新頁面
-      setTimeout(function(){location.reload();}, 500);
+      setTimeout(function(){location.reload();}, 1000);
     }else {
       $('#LoginAlert').addClass('alert-danger').html('<i class="material-icons">block</i> 帳號或密碼錯誤!');
     }
