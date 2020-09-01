@@ -12,13 +12,13 @@ $Regdate=date("Y/m/d");//取得年份/月/日 時:分:秒
 $Birth=$_POST['Birth'];
 $Gender=$_POST['Gender'];
 $Address=$_POST['Address'];
-$Position='C';//只能註冊顧客喔～
+$Position='A';//只能註冊顧客喔～
 
 if($ID==""||$Password==md5("")||$Name==""||$Email==""||$Phone==""||$Birth=="")
   die ('fail'); // 若有欄位缺填則die fail
 
-$sql= "INSERT INTO MEMBER(ID,Password,Email,Name,Phone,Regdate,Birth,Gender,Address,Position)
-        VALUE('$ID','$Password','$Email','$Name','$Phone','$Regdate','$Birth','$Gender','$Address','$Position')";
+$sql= "INSERT INTO MEMBER(ID,Password,Email,Name,Money,Phone,Regdate,Birth,Gender,Address,Position)
+        VALUE('$ID','$Password','$Email','$Name','0','$Phone','$Regdate','$Birth','$Gender','$Address','$Position')";
 
 // 將使用者輸入的username 和資料庫中的比對，檢查是否重複
 $sql_check= "SELECT * FROM MEMBER WHERE ID='" . $_POST['ID']."'";

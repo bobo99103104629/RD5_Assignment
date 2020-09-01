@@ -15,15 +15,15 @@ CREATE TABLE MEMBER(
 
 -- 商品;
 CREATE TABLE PRODUCT(
-  ID INT(7) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-  Name VARCHAR(30) NOT NULL,
-  State ENUM('交易中', '交易完成', '交易取消'),
-  Stock INT(7) UNSIGNED NOT NULL,
-  Price INT(10) UNSIGNED NOT NULL,
-  Img VARCHAR(100) NOT NULL,
+  pID INT(7) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  ID VARCHAR(20),
+  Name VARCHAR(30) DEFAULT NULL,
+  Price INT(10) UNSIGNED DEFAULT NULL,
+  Img VARCHAR(100) DEFAULT NULL,
   Info VARCHAR(300),
-  DID INT(7) UNSIGNED,
-  CategoryID INT(7) UNSIGNED NOT NULL
+  ptime VARCHAR(100) DEFAULT NULL,
+  CategoryID INT(7) UNSIGNED DEFAULT NULL
+  REFERENCES MEMBER(ID)
 );
 
 -- 商品類型;
@@ -32,17 +32,6 @@ CREATE TABLE CATEGORY(
     Name VARCHAR(10) NOT NULL UNIQUE
 );
 
--- 折扣;
-CREATE TABLE DISCOUNT (
-  ID INT(7) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-  Type ENUM('shipping', 'seasoning', 'event'),
-  PeriodFrom DATE NOT NULL,
-  PeriodTo DATE NOT NULL,
-  Requirement INT(7) UNSIGNED,
-  Rate DOUBLE(3,3) NOT NULL,
-  Info VARCHAR(100) NOT NULL,
-  EventType ENUM('BOGO', 'discount')
-);
 
 -- VIEW 視界;
 
@@ -53,23 +42,9 @@ DROP VIEW IF EXISTS PRODUCT_VIEW;
 -- PPriceF: 加入逗號的原始價格 / PPriceDiscount: 加入逗號的折扣後價格，同上。;
 
 CREATE VIEW PRODUCT_VIEW
-AS SELECT P.ID PID ,P.Name PName, P.Info PInfo, P.Img PImg, P.Stock PStock, P.State PState,
-          C.Name CName, C.ID CID, D.ID DID, D.Rate DRate, D.EventType DEvent,
-          (CASE WHEN ((D.PeriodTo >= NOW() AND D.PeriodFrom <= NOW()) AND D.EventType='BOGO')
-                THEN 'BOGO'
-                WHEN ((D.PeriodTo >= NOW() AND D.PeriodFrom <= NOW()) AND D.EventType='Discount')
-                THEN 'Discount'
-                ELSE NULL END) DEventType,
-          P.Price PPrice,
-            (CASE WHEN ((D.PeriodTo >= NOW() AND D.PeriodFrom <= NOW()) AND D.EventType='Discount')
-                THEN (P.Price * D.Rate)
-                ELSE NULL END) PPriceDiscount,
-          FORMAT(P.Price,0) PPriceF,
-          FORMAT((CASE WHEN ((D.PeriodTo >= NOW() AND D.PeriodFrom <= NOW()) AND D.EventType='Discount')
-                THEN (P.Price * D.Rate)
-                ELSE NULL END),0) PPriceDiscountF
+AS SELECT P.ID PID ,P.Name PName, P.Info PInfo, P.Img PImg,
+          C.Name CName, C.ID CID,P.Price PPriceF,P.ptime Ptime
            FROM PRODUCT P
            INNER JOIN CATEGORY C ON P.CategoryID = C.ID
-           LEFT JOIN DISCOUNT D ON P.DID = D.ID
            WHERE P.CategoryID = C.ID
            ORDER BY PID;

@@ -16,17 +16,15 @@
 <body>
   <?php include('nav.php'); ?>
   <?php
+  //設定地點為台北時區
+  date_default_timezone_set('Asia/Taipei');
       include ('connection.php');
       $name = $_POST['Name'];
-      $state = $_POST['State'];
-      $stock = $_POST['Stock'];
       $price = $_POST['Price'];
       $info = $_POST['Info'];
-      $event = $_POST['Event'];
-      if($event == '')
-        $event = 'null';
-      $type = $_POST['Type'];
+      $ptime = Date("Y年m月d日 H:i:s");
       $uploadOk = 1;
+
       if (!file_exists($_FILES['file']['tmp_name']) || !is_uploaded_file($_FILES['file']['tmp_name'])){
         // 未選擇圖片
         $target_file = 'img/no_img-01.png'; // 沒有選擇圖片時，設定成預設飲料圖
@@ -54,17 +52,14 @@
         }
 
       }
-      
+
       $sql = "INSERT INTO PRODUCT
-              VALUE('3', '$name', '$state', $stock, $price, '$target_file', '$info', $event, $type)";
-      if ($conn -> query($sql) === TRUE){
-       
+              VALUE(null,'$user_id', '$name', $price, '$target_file', '$info', '$ptime',$cc)";
+      if ($conn -> query($sql) === TRUE)
         $_SESSION['AlertMsg'] = array('success','<i class="material-icons">done</i> 新增成功！', false);
-      }else{
+      else
         $_SESSION['AlertMsg'] = array('danger','<i class="material-icons">block</i> 新增失敗！',false);
-      }  
-    $sql = "UPDATE  MEMBER SET Money = $user_money-$price WHERE ID = 'admin';";   
-    $result = $conn->query($sql);  
+
    ?>
    <?php include('footer.php') ?>
 </body>

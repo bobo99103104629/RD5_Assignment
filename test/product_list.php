@@ -10,7 +10,7 @@
   <!-- 引入CSS等樣式內容 -->
   <?php include('style.php') ?>
   <?php // 若無權限
-  if(!($user_position=='A'||$user_position=='S'))
+  if(!($user_position=='A'))
     die ('<meta http-equiv="refresh" content="0;URL=index.php">');
   // 若未GET顯示頁面
   if(!(isset($_GET['show']))){
@@ -30,17 +30,18 @@
   <?php include('nav.php'); ?>
 
   <div class="container mt-3">
+    <?php include('echo_alert.php') ?>
 
     <div class="row">
       <div class="col-12 btn-group">
-        <button class="btn btn-outline-primary btn-lg <?php if($_GET['show']=='list')echo 'active '?>" onclick="location.href='?show=list'">管理商品</button>
-        <button class="btn btn-outline-primary btn-lg <?php if($_GET['show']=='new')echo 'active '?>" onclick="location.href='?show=new'">新增</button>
+        <button class="btn btn-outline-primary btn-lg <?php if($_GET['show']=='list')echo 'active '?>" onclick="location.href='?show=list'">管理紀錄</button>
+        <button class="btn btn-outline-primary btn-lg <?php if($_GET['show']=='new')echo 'active '?>" onclick="location.href='?show=new'">提款</button>
       </div>
       <!-- 管理商品 -->
       <div class="col-12 <?=($_GET['show']!='list')?'d-none ':''; ?> ">
         <?php
           if(isset($_GET['page'])){
-            $total = mysqli_num_rows($conn->query("SELECT * FROM PRODUCT")); // 共幾筆資料
+            $total = mysqli_num_rows($conn->query("SELECT * FROM PRODUCT WHERE ID='$user_id'")); // 共幾筆資料
             $limit = 10; // 每頁5筆
             $start = $_GET['page'] * $limit;
             $currentPage=$_GET['page'];
@@ -49,41 +50,36 @@
         ?>
         <table class="table mt-3 d-none d-lg-table ">
           <thead>
-            <tr class="text-center">
-              <th scope="col" style="width:8rem">名稱</th>
-              <th scope="col" style="width:5rem">狀態</th>
-              <th scope="col" style="width:4rem">價錢</th>
+            <tr class="thead-dark text-center">
+              <th scope="col" style="width:8rem">帳戶</th>
+              <th scope="col" style="width:4rem">金額</th>
               <th scope="col" style="width:10rem" >圖片</th>
-              <th scope="col" style="width:16rem" >商品介紹</th>
+              <th scope="col" style="width:16rem">介紹</th>
+              <th scope="col" style="width:10rem">提款時間</th>
               <th scope="col" style="width:10rem">修改</th>
             </tr>
           </thead>
           <tbody>
             <?php
-            $sql = "SELECT * FROM PRODUCT";
+            $sql = "SELECT * FROM PRODUCT WHERE ID='$user_id'";
             if(isset($_GET['page'])) // 若有GET到頁數
                $sql .= " ORDER BY ID ASC LIMIT $start, $limit";
 
             $result = $conn->query($sql);
             if($result->num_rows > 0) {
               while($row = $result->fetch_assoc()){
-                switch ($row["State"]) {
-                  case 'in_stock': $state = '<span class="badge badge-success">現貨</span>'; break;
-                  case 'out_of_stock': $state = '<span class="badge badge-warning">缺貨</span>'; break;
-                  case 'removed_from_shelves': $state = '<span class="badge badge-secondary">已下架</span>'; break;
-                  default: $state = $row["State"]; break;
-                }
+                
+                
 
                 echo
-                '<tr class="text-center">
+                '<tr class= "text-center">
                 <td><a class="text-dark" href="product_detail.php?ID='.  $row["ID"] .'">' . $row["Name"] . '</a></td>
-                <td>' . $state . '</td>
                 <td>' . $row["Price"] . '</td>
                 <td class="text-center"> <img src ="' .$row['Img'] . '" class="img-fluid" style="max-height:5rem"></td>
                 <td>' . $row["Info"] . '</td>
+                <td>'. $row['ptime'] .'</td>
                 <td> 
-                    <button type="button" class="btn btn-primary" onclick="location.href=\'product_list_detail.php?ID=' .$row["ID"].'\'"> 修改 </button>
-                    <button type="button" class="btn btn-primary" onclick="location.href=\'product_list_del.php?ID=' .$row["ID"].'\'"> 刪除 </button>
+                    <button type="button" class="btn btn-primary" onclick="location.href=\'product_list_del.php?ID=' .$row["ID"].'\'"> 刪除紀錄 </button>
                 </td>
                 
 

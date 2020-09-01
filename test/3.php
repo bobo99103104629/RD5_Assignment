@@ -12,12 +12,12 @@ if((!empty($_SESSION['check_word'])) && (!empty($_POST['checkword']))){  //判�
           header('content-Type: text/html; charset=utf-8');
          
           echo '<p> </p><p> </p><a href="./chptcha_index.php">OK輸入正確，將於一秒後跳轉(按此也可返回)</a>';
-         echo '<meta http-equiv="refresh" content="1; url=./ndex.php">';
+         echo '<meta http-equiv="refresh" content="1; url=./product_list.php">';
          
           exit();
      }else{
          echo '<p> </p><p> </p><a href="./chptcha_index.php">Error輸入錯誤，將於一秒後跳轉(按此也可返回)</a>';
-         echo '<meta http-equiv="refresh" content="1; url=./index.php">';
+         echo '<meta http-equiv="refresh" content="1; url=./cash.php">';
      }
 
 }

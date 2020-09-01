@@ -21,26 +21,17 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <!-- 靠左 -->
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item <?=($this_page =='reg')?'active':'' ?> <?=isset($_SESSION['ID'])?'':'d-none'?>">
-          <a class="nav-link" href="deposit.php">存款</a>
+        <li class="nav-item <?=($this_page =='deposit')?'active':'' ?> <?=isset($_SESSION['ID'])?'':'d-none'?>">
+          <a class="nav-link" href="deposit.php"><i class="material-icons">account_balance</i>帳戶</a>
         </li>
-        <li class="nav-item <?=($this_page =='reg')?'active':'' ?> <?=isset($_SESSION['ID'])?'':'d-none'?>">
-          <a class="nav-link" href="customer_order.php">提款</a>
-        </li>
-        <li class="nav-item <?=($this_page =='reg')?'active':'' ?> <?=isset($_SESSION['ID'])?'':'d-none'?>">
-          <a class="nav-link" href="customer_order.php">查詢餘額</a>
-        </li>
-        <li class="nav-item <?=($this_page =='reg')?'active':'' ?> <?=isset($_SESSION['ID'])?'':'d-none'?>">
-          <a class="nav-link" href="customer_order.php">查詢明細</a>
+        <li class="nav-item <?=($this_page =='cash')?'active':'' ?> <?=isset($_SESSION['ID'])?'':'d-none'?>">
+          <a class="nav-link" href="cash.php"><i class="material-icons">monetization_on</i>收支</a>
         </li>
       </ul>
 
       <!-- 靠右 -->
       <ul class="navbar-nav ml-auto">
         <!-- Customer -->
-        <li class="nav-item <?=($this_page =='product_list')?'active ':'' ?> <?=$admin_display ?>">
-          <a class="nav-link" href="product_list.php">管理交易</a>
-        </li>
         <li class="nav-item <?=($this_page =='login')?'active':'' ?> <?=$login_display ?>">
           <a class="nav-link" data-toggle="modal" href="#loginModal">登入</a>
         </li>
@@ -68,7 +59,7 @@
           <div class="dropdown-menu" >
             <h6 class="dropdown-header">ID: <?=$user_id ?></h6>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#" onclick="$.post('logout.php');location.reload();">
+            <a class="dropdown-item" href="#" onclick="$.post('logout.php');location.replace('index.php');">
               <i class="material-icons">exit_to_app</i> 登出
             </a>
           </div>

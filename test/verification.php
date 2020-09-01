@@ -26,3 +26,22 @@ if(isset($_SESSION['ID'])){ // 若已登入
   $user_address = $rows['Address'];   // 地址
   $user_money = $rows['Money'];   // 存款
 }
+
+if(isset($_SESSION['ID'])){ // 若已登入
+  $user_id = $_SESSION['ID']; // 登入的用戶id
+  $sql = "SELECT * FROM CATEGORY WHERE ID='2'";
+  $rows = mysqli_fetch_array($conn->query($sql));
+  $cc = $rows['ID'];         // 存取款類別
+}
+if(isset($_SESSION['ID'])){ // 若已登入
+  $user_id = $_SESSION['ID']; // 登入的用戶id
+  $sql = "SELECT * FROM CATEGORY WHERE ID='1'";
+  $rows = mysqli_fetch_array($conn->query($sql));
+  $zz = $rows['ID'];         // 存取款類別
+}
+if(isset($_SESSION['ID'])){ // 若已登入
+  $user_id = $_SESSION['ID']; // 登入的用戶id
+  $sql = "SELECT * FROM PRODUCT";
+  $rows = mysqli_fetch_array($conn->query($sql));
+  $gg = $rows['pID'];         // 存取款類別
+}

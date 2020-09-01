@@ -21,12 +21,12 @@
 
     $sql = "DELETE PRODUCT
       FROM PRODUCT
-      WHERE ID =  {$_GET['ID'] } ";
+      WHERE pID =  $gg ";
 
       if ($conn -> query($sql) === TRUE)
-        $_SESSION['AlertMsg'] = array('success','<i class="material-icons">done</i> 新增成功！', false);
+        $_SESSION['AlertMsg'] = array('success','<i class="material-icons">done</i> 刪除成功！', false);
       else
-        $_SESSION['AlertMsg'] = array('danger','<i class="material-icons">block</i> 新增失敗！',false);
+        $_SESSION['AlertMsg'] = array('danger','<i class="material-icons">block</i> 刪除失敗！',false);
 
    ?>
    <?php include('footer.php') ?>

@@ -1,7 +1,7 @@
 <?php session_start(); ?>
 <?php include('connection.php'); ?>
 <?php
-$sql = "SELECT * FROM PRODUCT_VIEW WHERE PID = ".$_GET['ID'];
+$sql = "SELECT * FROM PRODUCT_VIEW WHERE PID='$user_id'";
 $page_name = mysqli_fetch_array($conn->query($sql))['PName'];
 ?>
 
@@ -21,9 +21,10 @@ $page_name = mysqli_fetch_array($conn->query($sql))['PName'];
   <!-- 引入導覽列 -->
   <?php include('nav.php') ?>
   <div class="container my-3">
+    <?php include('echo_alert.php') ?>
     <div class="row">
       <?php
-      $sql = "SELECT * FROM PRODUCT_VIEW WHERE PID = ".$_GET['ID'];
+      $sql = "SELECT * FROM PRODUCT_VIEW WHERE PID='$user_id'";
 
       $result = $conn->query($sql);
       $rows = mysqli_fetch_array($result);
@@ -49,26 +50,17 @@ $page_name = mysqli_fetch_array($conn->query($sql))['PName'];
                   <div class="card-body">
                     <div class="">
                       <h4 class="text-danger d-inline-block">NT$ </h4>
-                      <?php
-                      if($rows['PPriceDiscountF'] != ''){ // 有折扣
-                          echo '<h1 class="text-danger d-inline-block price">'. $rows['PPriceDiscountF'].'</h1>';
-                          echo '<h5 class="text-muted d-inline-block ml-2 "><del>NT$ '. $rows['PPriceF'].'</del></h5>';
-                      }else{ // 無折扣
-                        echo '<h1 class="text-danger d-inline-block price">'. $rows['PPriceF'].'</h1>';
-                      }
+                      <?php                      
+                        echo '<h1 class="text-danger d-inline-block price">'. $rows['PPriceF'].'</h1>';                     
                       ?>
-
+                      <br>
+                    <h3 class="text-success d-inline-block">提款時間：<?=$rows['Ptime']?> </h3>
                     </div>
                     <div>
-                      <span class="badge badge-pill badge-primary">手續費: NT $0</span>
                       <!-- 印出資訊折扣的資訊 -->
                     </div>
                   </div>
                 </div>
-                <form class="my-4" method="post" action="cart_add.php">
-                  <div class="form-group row ">
-                  </div>
-                </form>
                 <hr class="my-4">
                 <!-- 評論 -->
               </div>

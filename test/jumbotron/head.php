@@ -11,7 +11,7 @@
     <button type="button" class="btn btn-outline-" data-toggle="modal" data-target="#loginModal">請先登入</button>
     </div>
     <div class="  <?php if(!isset($_SESSION['ID']))echo'd-none' ?>">
-    <h1>您好！<?=$user_name ?></h1>
+    <h1>您好！親愛的<?=$user_name ?></h1>
     </div>
   </div>
 </div>

@@ -12,11 +12,11 @@
   <title>商品</title>
   <?php require_once ('js.php') ?>
 </head>
-
+<?php require_once '1.php' ?>
 <body>
   <!-- 引入導覽列 -->
   <?php include('nav.php') ?>
-  <?php include('jumbotron/page2.php')?>
+  <?php include('jumbotron/page1.php')?>
   <div class="container my-3">
     <div class="row">
       <!-- 左側選單 -->
@@ -29,12 +29,12 @@
            isset($_GET['page']) ||
            isset($_GET['discount']) )?'active':'';
           ?>
-          <a href="deposit.php" class="list-group-item list-group-item-action <?= $list_active ?>"><i class="material-icons">view_list</i> 交易明細</a>
-          <a href="deposit.php?discount" class="list-group-item list-group-item-action <?=(isset($_GET['discount']))?'active':'';?>"><i class="material-icons">qr_code</i> 帳戶號碼</a>
+          <a data-toggle="modal" href="#loginModal" class="list-group-item list-group-item-action <?= $list_active ?>"><i class="material-icons">money</i> 我要提款</a>
+          <a href="cash.php?discount" class="list-group-item list-group-item-action <?=(isset($_GET['discount']))?'active':'';?>"><i class="material-icons">local_atm</i> 我要存款</a>
 
           <?php
             $sql = "SELECT CID, CName, COUNT(*) CNum
-                    FROM PRODUCT_VIEW WHERE PID='$user_id' GROUP BY CID
+                    FROM PRODUCT_VIEW WHERE PID='$user_id'GROUP BY CID
                     ORDER BY CID";
             $result = $conn->query($sql);
             while($rows = mysqli_fetch_array($result)){
