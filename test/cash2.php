@@ -12,11 +12,11 @@
   <title>商品</title>
   <?php require_once ('js.php') ?>
 </head>
-
+<?php require_once '1.php' ?>
 <body>
   <!-- 引入導覽列 -->
   <?php include('nav.php') ?>
-  <?php include('jumbotron/page2.php')?>
+  <?php include('jumbotron/page1.php')?>
   <div class="container my-3">
     <div class="row">
       <!-- 左側選單 -->
@@ -29,12 +29,12 @@
            isset($_GET['page']) ||
            isset($_GET['discount']) )?'active':'';
           ?>
-          <a href="deposit.php" class="list-group-item list-group-item-action <?= $list_active ?>"><i class="material-icons">view_list</i> 交易明細</a>
-          <a href="deposit.php?discount" class="list-group-item list-group-item-action <?=(isset($_GET['discount']))?'active':'';?>"><i class="material-icons">qr_code</i> 帳戶號碼</a>
+          <a data-toggle="modal" href="#loginModal" class="list-group-item list-group-item-action <?= $list_active ?>"><i class="material-icons">money</i> 我要提款</a>
+          <a href="money_list.php" class="list-group-item list-group-item-action <?=(isset($_GET['discount']))?'active':'';?>"><i class="material-icons">local_atm</i> 我要存款</a>
 
           <?php
             $sql = "SELECT CID, CName, COUNT(*) CNum
-                    FROM PRODUCT_VIEW WHERE PID='$user_id' GROUP BY CID
+                    FROM PRODUCT_VIEW WHERE PID='$user_id'GROUP BY CID
                     ORDER BY CID";
             $result = $conn->query($sql);
             while($rows = mysqli_fetch_array($result)){
@@ -42,7 +42,7 @@
               if(isset($_GET['category']) && $_GET['category']== $rows['CID']){
                 $list_active='active';
               }else $list_active='';
-              echo '<a href="deposit.php?category='. $rows['CID'] .'"
+              echo '<a href="cash.php?category='. $rows['CID'] .'"
                       class="list-group-item list-group-item-action d-flex justify-content-between align-items-center '. $list_active .'">'. $rows['CName'] .
                     '<span class="badge badge-dark badge-pill">'. $rows['CNum'] .'</span></a>';
             }
@@ -55,12 +55,21 @@
         <div class="row">
           <?php
             //基本查詢指令
-            $sql = "SELECT * FROM PRODUCT_VIEW WHERE PID='$user_id'";
+            $sql = "SELECT * FROM PRODUCT_VIEW WHERE PID='$user_id'&& CID='2'";
             $result = $conn->query($sql);
+            if(isset($_GET['keyword'])){
+              if($_GET['keyword']!=""){
+                // 加入keyword做篩選條件
+                $search_keyword=$_GET['keyword'];
+                $sql .= "AND (PName LIKE '%$search_keyword%'
+                        OR PInfo LIKE '%$search_keyword%'
+                        OR CName LIKE '%$search_keyword%') ";
+              }
+            }
             while($rows = mysqli_fetch_array($result)){
 
               echo '<div class="col-12 col-lg-4 mb-2">
-                      <a href="product_detail.php?ID='. $rows['PID'] .'" class="text-dark product-item">
+                      <a href="cash_detail.php?ID='. $rows['PID'] .'" class="text-dark product-item">
                         <div class="card">
                           <div class="card-body position-relative">
                               
@@ -81,9 +90,6 @@
               
             }
           ?>
-          <div class="col-12 col-lg-9 <?php if(!isset($_GET['page'])) echo 'd-none'; ?>">
-            <?php include('search.php')  ?>
-          </div>
         </div>
         <hr>
       </div>

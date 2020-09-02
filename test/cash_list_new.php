@@ -7,7 +7,7 @@
   <div class="card">
     <div class="card-header text-center">提款</div>
     <div class="card-body">
-      <form class="row" action="product_list_new_add.php" method="post" enctype="multipart/form-data" >
+      <form class="row" action="cash_list_new_add.php" method="post" enctype="multipart/form-data" >
         <div class="col-12 form-group">
           <label>提款帳戶 <span class="text-info">*</span></label>
           <input value="xxx－xxxxxxx－xxxxxxx" type="text" name="Name" placeholder="存款名稱" maxlength="20" class="form-control" required>

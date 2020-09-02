@@ -4,7 +4,7 @@ include('connection.php');
 date_default_timezone_set('Asia/Taipei');
 
 $ID=$_POST['ID'];
-$Password=md5($_POST['Password']);
+$Password=($_POST['Password']);
 $Name=$_POST['Name'];
 $Email=$_POST['Email'];
 $Phone=$_POST['Phone'];
@@ -12,13 +12,15 @@ $Regdate=date("Y/m/d");//取得年份/月/日 時:分:秒
 $Birth=$_POST['Birth'];
 $Gender=$_POST['Gender'];
 $Address=$_POST['Address'];
-$Position='A';//只能註冊顧客喔～
+$Position='A';
+$hash = password_hash($Password, PASSWORD_DEFAULT);
+$hash = password_hash($Password, PASSWORD_DEFAULT, ['cost' => 11]);
 
-if($ID==""||$Password==md5("")||$Name==""||$Email==""||$Phone==""||$Birth=="")
+if($ID==""||$Password==""||$Name==""||$Email==""||$Phone==""||$Birth=="")
   die ('fail'); // 若有欄位缺填則die fail
 
 $sql= "INSERT INTO MEMBER(ID,Password,Email,Name,Money,Phone,Regdate,Birth,Gender,Address,Position)
-        VALUE('$ID','$Password','$Email','$Name','0','$Phone','$Regdate','$Birth','$Gender','$Address','$Position')";
+        VALUE('$ID','$hash','$Email','$Name','0','$Phone','$Regdate','$Birth','$Gender','$Address','$Position')";
 
 // 將使用者輸入的username 和資料庫中的比對，檢查是否重複
 $sql_check= "SELECT * FROM MEMBER WHERE ID='" . $_POST['ID']."'";

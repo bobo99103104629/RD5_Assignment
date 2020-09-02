@@ -24,7 +24,7 @@ $page_name = mysqli_fetch_array($conn->query($sql))['PName'];
     <?php include('echo_alert.php') ?>
     <div class="row">
       <?php
-      $sql = "SELECT * FROM PRODUCT_VIEW WHERE PID='$user_id'";
+      $sql = "SELECT * FROM PRODUCT_VIEW WHERE PP=".$_GET['ID'];
 
       $result = $conn->query($sql);
       $rows = mysqli_fetch_array($result);
@@ -42,10 +42,12 @@ $page_name = mysqli_fetch_array($conn->query($sql))['PName'];
                 <div class="mb-3">
                   <h2 class="text-center text-lg-left d-inline"><?php echo $rows['PName']; ?></h2>
                   <span class="badge badge-dark badge-pill mx-2"><?php echo $rows['CName']; ?></span>
+                  <span class="text-primary"><?php echo 'ID:'.$user_id; ?></span>
                 </div>
 
                 <hr class="my-4">
                 <p><?php echo $rows['PInfo']; ?></p>
+                
                 <div class="card bg-light border-light">
                   <div class="card-body">
                     <div class="">
@@ -53,8 +55,14 @@ $page_name = mysqli_fetch_array($conn->query($sql))['PName'];
                       <?php                      
                         echo '<h1 class="text-danger d-inline-block price">'. $rows['PPriceF'].'</h1>';                     
                       ?>
+                      <a class=" d-inline-block">(剩餘NT$ </a>
+                      <?php                      
+                        echo '<a class="text-info d-inline-block price">'. $rows['Ptotal'].'</a>';                     
+                      ?>
+                      <a>)</a>
                       <br>
-                    <h3 class="text-success d-inline-block">提款時間：<?=$rows['Ptime']?> </h3>
+                    <h3 class="d-inline-block"><?php echo $rows['CName']; ?>時間： </h3>
+                    <h3 class="text-success d-inline-block"><?=$rows['Ptime']?></h3>
                     </div>
                     <div>
                       <!-- 印出資訊折扣的資訊 -->

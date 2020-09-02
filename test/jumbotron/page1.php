@@ -1,4 +1,4 @@
-<?php $bg_url='img/bg1.jpg';?>
+<?php $bg_url='img/bg1.png';?>
 <div class="jumbotron-fluid text-center bg-dark text-white" style="background:url('<?=$bg_url ?>');
   background-size: cover; background-position:center center; background-attachment:fixed;">
   <div class="container" style="padding:5rem 0;">

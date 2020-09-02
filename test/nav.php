@@ -21,11 +21,9 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <!-- 靠左 -->
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item <?=($this_page =='deposit')?'active':'' ?> <?=isset($_SESSION['ID'])?'':'d-none'?>">
-          <a class="nav-link" href="deposit.php"><i class="material-icons">account_balance</i>帳戶</a>
-        </li>
+        
         <li class="nav-item <?=($this_page =='cash')?'active':'' ?> <?=isset($_SESSION['ID'])?'':'d-none'?>">
-          <a class="nav-link" href="cash.php"><i class="material-icons">monetization_on</i>收支</a>
+          <a class="nav-link" href="cash.php"><i class="material-icons">monetization_on</i>帳戶</a>
         </li>
       </ul>
 

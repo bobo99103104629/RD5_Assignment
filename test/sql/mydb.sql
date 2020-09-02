@@ -13,12 +13,13 @@ CREATE TABLE MEMBER(
   Position ENUM('S', 'A', 'C') NOT NULL
 );
 
--- 商品;
+-- 提款;
 CREATE TABLE PRODUCT(
-  pID INT(7) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  pid INT(7) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
   ID VARCHAR(20),
   Name VARCHAR(30) DEFAULT NULL,
   Price INT(10) UNSIGNED DEFAULT NULL,
+  total INT(10) UNSIGNED DEFAULT NULL,
   Img VARCHAR(100) DEFAULT NULL,
   Info VARCHAR(300),
   ptime VARCHAR(100) DEFAULT NULL,
@@ -26,7 +27,9 @@ CREATE TABLE PRODUCT(
   REFERENCES MEMBER(ID)
 );
 
--- 商品類型;
+
+
+-- 類型;
 CREATE TABLE CATEGORY(
     ID INT(7) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     Name VARCHAR(10) NOT NULL UNIQUE
@@ -42,9 +45,11 @@ DROP VIEW IF EXISTS PRODUCT_VIEW;
 -- PPriceF: 加入逗號的原始價格 / PPriceDiscount: 加入逗號的折扣後價格，同上。;
 
 CREATE VIEW PRODUCT_VIEW
-AS SELECT P.ID PID ,P.Name PName, P.Info PInfo, P.Img PImg,
-          C.Name CName, C.ID CID,P.Price PPriceF,P.ptime Ptime
+AS SELECT P.pid PP ,P.ID PID ,P.Name PName, P.Info PInfo, P.Img PImg,
+          C.Name CName, C.ID CID,P.Price PPriceF,P.total Ptotal,P.ptime Ptime
            FROM PRODUCT P
            INNER JOIN CATEGORY C ON P.CategoryID = C.ID
            WHERE P.CategoryID = C.ID
            ORDER BY PID;
+
+        

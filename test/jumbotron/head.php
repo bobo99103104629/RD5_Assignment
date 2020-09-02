@@ -1,4 +1,4 @@
-<?php $bg_url='img/bg1.jpg';?>
+<?php $bg_url='img/bg1.png';?>
 
 <div class="jumbotron-fluid text-center bg-dark text-white" style="background:url('<?=$bg_url ?>');
   background-size: cover; background-position:center center; background-attachment:fixed;">
@@ -12,6 +12,7 @@
     </div>
     <div class="  <?php if(!isset($_SESSION['ID']))echo'd-none' ?>">
     <h1>您好！親愛的<?=$user_name ?></h1>
+    <button onclick="location.href='cash.php'" class="btn btn-primary mt-3 mr-1">前往帳戶</button>
     </div>
   </div>
 </div>

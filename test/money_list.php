@@ -14,11 +14,11 @@
     die ('<meta http-equiv="refresh" content="0;URL=index.php">');
   // 若未GET顯示頁面
   if(!(isset($_GET['show']))){
-    die ('<meta http-equiv="refresh" content="0;URL=product_list.php?show=list&page=0">');
+    die ('<meta http-equiv="refresh" content="0;URL=money_list.php?show=list&page=0">');
   }else{
     // 若GET顯示頁面且為‘list’但未GET到頁數
     if($_GET['show']=='list'&&!(isset($_GET['page'])))
-      die ('<meta http-equiv="refresh" content="0;URL=product_list.php?show=list&page=0">');
+      die ('<meta http-equiv="refresh" content="0;URL=money_list.php?show=list&page=0">');
   }
   ?>
   <!-- 根據所在頁面 印出對應的標題 -->
@@ -34,8 +34,8 @@
 
     <div class="row">
       <div class="col-12 btn-group">
-        <button class="btn btn-outline-primary btn-lg <?php if($_GET['show']=='list')echo 'active '?>" onclick="location.href='?show=list'">管理紀錄</button>
-        <button class="btn btn-outline-primary btn-lg <?php if($_GET['show']=='new')echo 'active '?>" onclick="location.href='?show=new'">提款</button>
+        <button class="btn btn-outline-primary btn-lg <?php if($_GET['show']=='list')echo 'active '?>" onclick="location.href='?show=list'">存款紀錄</button>
+        <button class="btn btn-outline-primary btn-lg <?php if($_GET['show']=='new')echo 'active '?>" onclick="location.href='?show=new'">我要存款</button>
       </div>
       <!-- 管理商品 -->
       <div class="col-12 <?=($_GET['show']!='list')?'d-none ':''; ?> ">
@@ -54,17 +54,16 @@
               <th scope="col" style="width:8rem">帳戶</th>
               <th scope="col" style="width:4rem">金額</th>
               <th scope="col" style="width:10rem" >圖片</th>
-              <th scope="col" style="width:16rem">介紹</th>
-              <th scope="col" style="width:10rem">提款時間</th>
-              <th scope="col" style="width:10rem">修改</th>
+              <th scope="col" style="width:10rem">介紹</th>
+              <th scope="col" style="width:5rem">剩餘金額</th>
+              <th scope="col" style="width:12rem">存款時間</th>
             </tr>
           </thead>
           <tbody>
             <?php
-            $sql = "SELECT * FROM PRODUCT WHERE ID='$user_id'";
+            $sql = "SELECT * FROM PRODUCT WHERE ID='$user_id' && CategoryID = '2'";
             if(isset($_GET['page'])) // 若有GET到頁數
                $sql .= " ORDER BY ID ASC LIMIT $start, $limit";
-
             $result = $conn->query($sql);
             if($result->num_rows > 0) {
               while($row = $result->fetch_assoc()){
@@ -73,14 +72,13 @@
 
                 echo
                 '<tr class= "text-center">
-                <td><a class="text-dark" href="product_detail.php?ID='.  $row["ID"] .'">' . $row["Name"] . '</a></td>
+                <td><a class="text-dark" href="money_detail.php?ID='.  $row["ID"] .'">' . $row["Name"] . '</a></td>
                 <td>' . $row["Price"] . '</td>
                 <td class="text-center"> <img src ="' .$row['Img'] . '" class="img-fluid" style="max-height:5rem"></td>
                 <td>' . $row["Info"] . '</td>
+                <td>' . $row["total"] . '</td>
                 <td>'. $row['ptime'] .'</td>
-                <td> 
-                    <button type="button" class="btn btn-primary" onclick="location.href=\'product_list_del.php?ID=' .$row["ID"].'\'"> 刪除紀錄 </button>
-                </td>
+
                 
 
                 </tr>';
@@ -115,7 +113,7 @@
         </div>
       </div>
       <!-- 新增 -->
-      <?php if($_GET['show']=='new') include 'product_list_new.php' ?>
+      <?php if($_GET['show']=='new') include 'money_list_new.php' ?>
 
     </div>
   </div>

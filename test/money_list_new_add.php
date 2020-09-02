@@ -10,7 +10,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <?php include('style.php') ?>
   <title><?php echo  $page_name ?></title>
-  <meta http-equiv="refresh" content="<?php echo 0 ?>;URL=product_list.php">
+  <meta http-equiv="refresh" content="<?php echo 0 ?>;URL=money_list.php">
   <?php require_once ('js.php') ?>
 </head>
 <body>
@@ -24,7 +24,7 @@
       $info = $_POST['Info'];
       $ptime = Date("Y年m月d日 H:i:s");
       $uploadOk = 1;
-
+      $total = $user_money-$price;
       if (!file_exists($_FILES['file']['tmp_name']) || !is_uploaded_file($_FILES['file']['tmp_name'])){
         // 未選擇圖片
         $target_file = 'img/no_img-01.png'; // 沒有選擇圖片時，設定成預設飲料圖
@@ -52,14 +52,19 @@
         }
 
       }
-
+      $result = $conn->query($sql);
       $sql = "INSERT INTO PRODUCT
-              VALUE(null,'$user_id', '$name', $price, '$target_file', '$info', '$ptime',$cc)";
-      if ($conn -> query($sql) === TRUE)
-        $_SESSION['AlertMsg'] = array('success','<i class="material-icons">done</i> 新增成功！', false);
-      else
-        $_SESSION['AlertMsg'] = array('danger','<i class="material-icons">block</i> 新增失敗！',false);
+              VALUE(null,'$user_id', '$name', $price, '$total', '$target_file', '$info', '$ptime','2')";
+      if (($conn -> query($sql) === TRUE)||($user_money >= '0')){
+        $_SESSION['AlertMsg'] = array('success','<i class="material-icons">done</i> 存款成功！', false);
+        $sql = "UPDATE MEMBER
+        SET money= $user_money++$price
+        WHERE ID ='$user_id';";
+        $conn->query($sql);
 
+    }else{
+      $_SESSION['AlertMsg'] = array('danger','<i class="material-icons">block</i> 存款失敗！',false);
+    }
    ?>
    <?php include('footer.php') ?>
 </body>

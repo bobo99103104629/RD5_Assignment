@@ -2,6 +2,15 @@
   登入介面改為modal顯示。
   此頁放的是‘modal彈出視窗’ 和 ‘AJAX語法’， 同時處理登入和登出。
 -->
+<style type="text/css">
+.aaa{
+width: 30px;
+height: 20px;
+position: absolute;  
+right: -15px; 
+margin: 40px;  
+}
+</style>
 <div class="modal fade" id="loginModal" tabindex="-1">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -23,8 +32,12 @@
               <small id="NoSuchID" class="text-warning d-none"></small>
             </div>
             <div class="col-12 form-group">
-              <label for="">密碼</label>
-              <input id="LoginPW" value="pw" type="password" placeholder="密碼" class="form-control" required>
+            <div id="page_container">
+              <div class="input_block">
+                <img id="demo_img" class="aaa" onclick="hideShowPsw()" src="visible.png">
+                <input id="LoginPW" value="pw" type="password" placeholder="密碼" class="form-control" required/>
+              </div>
+            </div>
               <small class="text-muted">萬用密碼'pw'</small>
             </div>
             <div class="col-12 form-group">
@@ -37,7 +50,19 @@
   </div>
 </div>
    
-
+<script type="text/javascript">
+	var demoImg = document.getElementById("demo_img");
+	var demoInput = document.getElementById("LoginPW");
+	function hideShowPsw(){
+		if (demoInput.type == "password") {
+			demoInput.type = "text";
+			demo_img.src = "invisible.png";
+		}else {
+			demoInput.type = "password";
+			demo_img.src = "visible.png";
+		}
+	}
+</script>
 
 
 
