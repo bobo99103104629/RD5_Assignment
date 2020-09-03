@@ -8,11 +8,11 @@
     <h5 id="head3" class="text-shadow-dark " style="letter-spacing:.5rem" >不專業の網路銀行系統</h5>
     <br>
     <div class="  <?php if(isset($_SESSION['ID']))echo'd-none' ?>">
-    <button type="button" class="btn btn-outline-" data-toggle="modal" data-target="#loginModal">請先登入</button>
+    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#loginModal">請先登入</button>
     </div>
     <div class="  <?php if(!isset($_SESSION['ID']))echo'd-none' ?>">
     <h1>您好！親愛的<?=$user_name ?></h1>
-    <button onclick="location.href='cash.php'" class="btn btn-primary mt-3 mr-1">前往帳戶</button>
+    <button onclick="location.href='cash.php'" class="btn btn-warning mt-3 mr-1">前往帳戶</button>
     </div>
   </div>
 </div>

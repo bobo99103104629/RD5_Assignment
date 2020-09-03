@@ -13,7 +13,7 @@
   if(!isset($_SESSION['ID']))
     die ('<meta http-equiv="refresh" content="0;URL=index.php">');
   ?>
-  <title><?php echo  $page_name. ' - ' .title_name ?></title>
+  <title><?php echo  $page_name?></title>
   <?php require_once ('js.php') ?>
 </head>
 

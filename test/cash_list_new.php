@@ -15,6 +15,7 @@
         <div class="col-12 col-lg-6 form-group">
           <label>金額 <span class="text-info">*</span></label>
           <input type="number" value="250" name="Price" placeholder="" maxlength="5" class="form-control" required>
+            <small class="text-muted">單筆不得超過NT$50000</small>
         </div>
 
         <div class="col-12 form-group">
@@ -27,7 +28,7 @@
           <input type="file" class="form-control-file" name="file">
         </div>
         <div class="col-12 form-group mt-3">
-          <button class="btn btn-success btn-block" type="submit" >確認新增</button>
+          <button class="btn btn-success btn-block" type="submit" >確認提款</button>
         </div>
       </form>
     </div>

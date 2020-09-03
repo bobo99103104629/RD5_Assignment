@@ -53,18 +53,18 @@
 
       }
       $result = $conn->query($sql);
+      if ((int)$total >= 0 && (int)$price <= 50000){
       $sql = "INSERT INTO PRODUCT
-              VALUE(null,'$user_id', '$name', $price, '$total', '$target_file', '$info', '$ptime','1')";
-      if (($conn -> query($sql) === TRUE)||$user_money > '0'||($price <= '5000')){
+              VALUE(null,'$user_id', '$name', $price, $total, '$target_file', '$info', '$ptime',1)";
+      }
+      if ($conn -> query($sql) === TRUE){
         $_SESSION['AlertMsg'] = array('success','<i class="material-icons">done</i> 提款成功！', false);
         $sql = "UPDATE MEMBER
         SET money= $user_money-$price
         WHERE ID ='$user_id';";
         $conn->query($sql);
-      }else if (($conn -> query($sql) === TRUE)||($user_money >= '0')||($price > '5000')){
-        $_SESSION['AlertMsg'] = array('danger','<i class="material-icons">block</i> 單筆不能超過5000！',false);
       }else{
-        $_SESSION['AlertMsg'] = array('danger','<i class="material-icons">block</i> 沒錢啦！！！',false);
+        $_SESSION['AlertMsg'] = array('danger','<i class="material-icons">block</i> 單筆不能超過50000！或 沒錢啦！！！',false);
       }
    ?>
    <?php include('footer.php') ?>

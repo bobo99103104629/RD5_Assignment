@@ -24,7 +24,7 @@
       $info = $_POST['Info'];
       $ptime = Date("Y年m月d日 H:i:s");
       $uploadOk = 1;
-      $total = $user_money-$price;
+      $total = $user_money+$price;
       if (!file_exists($_FILES['file']['tmp_name']) || !is_uploaded_file($_FILES['file']['tmp_name'])){
         // 未選擇圖片
         $target_file = 'img/no_img-01.png'; // 沒有選擇圖片時，設定成預設飲料圖
@@ -55,7 +55,7 @@
       $result = $conn->query($sql);
       $sql = "INSERT INTO PRODUCT
               VALUE(null,'$user_id', '$name', $price, '$total', '$target_file', '$info', '$ptime','2')";
-      if (($conn -> query($sql) === TRUE)||($user_money >= '0')){
+      if (($conn -> query($sql) === TRUE)&&((int)$user_money >= '0')){
         $_SESSION['AlertMsg'] = array('success','<i class="material-icons">done</i> 存款成功！', false);
         $sql = "UPDATE MEMBER
         SET money= $user_money++$price

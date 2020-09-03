@@ -14,35 +14,38 @@
     die ('<meta http-equiv="refresh" content="0;URL=index.php">');
   // 若未GET顯示頁面
   if(!(isset($_GET['show']))){
-    die ('<meta http-equiv="refresh" content="0;URL=money_list.php?show=list&page=0">');
+    die ('<meta http-equiv="refresh" content="0;URL=cash_list_mi.php?show=list&page=0">');
   }else{
     // 若GET顯示頁面且為‘list’但未GET到頁數
     if($_GET['show']=='list'&&!(isset($_GET['page'])))
-      die ('<meta http-equiv="refresh" content="0;URL=money_list.php?show=list&page=0">');
+      die ('<meta http-equiv="refresh" content="0;URL=cash_list_mi.php?show=list&page=0">');
   }
   ?>
   <!-- 根據所在頁面 印出對應的標題 -->
   <title><?php echo  $page_name ?></title>
   <?php require_once ('js.php') ?>
+  <?php require_once ('1.php') ?>
 </head>
 <body>
 
   <?php include('nav.php'); ?>
   <?php include('jumbotron/page1.php')?>
+
   <div class="container mt-3">
     <?php include('echo_alert.php') ?>
 
     <div class="row">
       <div class="col-12 btn-group">
-        <button class="btn btn-outline-primary btn-lg <?php if($_GET['show']=='list')echo 'active '?>" onclick="location.href='?show=list'">存款紀錄</button>
-        <button class="btn btn-outline-primary btn-lg <?php if($_GET['show']=='new')echo 'active '?>" onclick="location.href='?show=new'">我要存款</button>
+        <button class="btn btn-outline-primary btn-lg <?php if($_GET['show']=='list')echo 'active '?>" onclick="location.href='?show=list'">提款紀錄</button>
+        <button data-toggle="modal" href="#loginModal"class="btn btn-outline-primary btn-lg <?php if($_GET['show']=='new')echo 'active '?>">我要提款</button>
       </div>
       <!-- 管理商品 -->
       <div class="col-12 <?=($_GET['show']!='list')?'d-none ':''; ?> ">
         <?php
           if(isset($_GET['page'])){
-            $total = mysqli_num_rows($conn->query("SELECT * FROM PRODUCT WHERE ID='$user_id'&& CategoryID = '2'")); // 共幾筆資料
-            $limit = 10; // 每頁5筆
+            $total = mysqli_num_rows($conn->query("SELECT * FROM PRODUCT WHERE ID='$user_id'&& CategoryID='1'")); // 共幾筆資料
+          
+            $limit = 5; // 每頁5筆
             $start = $_GET['page'] * $limit;
             $currentPage=$_GET['page'];
             $maxPage= ceil($total/$limit);
@@ -56,12 +59,12 @@
               <th scope="col" style="width:10rem" >圖片</th>
               <th scope="col" style="width:10rem">介紹</th>
               <th scope="col" style="width:5rem">剩餘金額</th>
-              <th scope="col" style="width:12rem">存款時間</th>
+              <th scope="col" style="width:12rem">提款時間</th>
             </tr>
           </thead>
           <tbody>
             <?php
-            $sql = "SELECT * FROM PRODUCT WHERE ID='$user_id' && CategoryID = '2'";
+            $sql = "SELECT * FROM PRODUCT WHERE ID='$user_id' && CategoryID = '1'";
             if(isset($_GET['page'])) // 若有GET到頁數
                $sql .= " ORDER BY pid DESC LIMIT $start, $limit";
             $result = $conn->query($sql);
@@ -113,7 +116,7 @@
         </div>
       </div>
       <!-- 新增 -->
-      <?php if($_GET['show']=='new') include 'money_list_new.php' ?>
+      <?php if($_GET['show']=='new') include 'cash_list_new.php' ?>
 
     </div>
   </div>

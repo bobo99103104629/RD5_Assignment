@@ -12,7 +12,6 @@
   <title>商品</title>
   <?php require_once ('js.php') ?>
 </head>
-<?php require_once '1.php' ?>
 <body>
   <!-- 引入導覽列 -->
   <?php include('nav.php') ?>
@@ -28,10 +27,10 @@
            isset($_GET['search']) ||
            isset($_GET['page']) ||
            isset($_GET['discount']) )?'active':'';
-          ?><!--data-toggle="modal" href="#loginModal"-->
-          <a href="cash_list.php" class="list-group-item list-group-item-action <?= $list_active ?>"><i class="material-icons">money</i> 我要提款</a>
-          <a href="money_list.php" class="list-group-item list-group-item-action <?=(isset($_GET['discount']))?'active':'';?>"><i class="material-icons">local_atm</i> 我要存款</a>
-
+          ?>
+          <a href="cash_list_mi.php" class="list-group-item list-group-item-action"><i class="material-icons">money</i> 我要提款</a>
+          <a href="money_list.php" class="list-group-item list-group-item-action"><i class="material-icons">local_atm</i> 我要存款</a>
+          <a href="cash_total.php" class="list-group-item list-group-item-action"><i class="material-icons">local_atm</i> 我要存款</a>
           <?php
             $sql = "SELECT CID, CName, COUNT(*) CNum
                     FROM PRODUCT_VIEW WHERE PID='$user_id'GROUP BY CID
@@ -43,7 +42,7 @@
                 $list_active='active';
               }else $list_active='';
               echo '<a href="cash.php?category='. $rows['CID'] .'"
-                      class="list-group-item list-group-item-action d-flex justify-content-between align-items-center '. $list_active .'">'. $rows['CName'] .
+                      class="list-group-item list-group-item-action d-flex justify-content-between align-items-center '. $list_active .'">'. $rows['CName'] .'紀錄'.
                     '<span class="badge badge-dark badge-pill">'. $rows['CNum'] .'</span></a>';
             }
           ?>

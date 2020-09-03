@@ -28,6 +28,7 @@
 <body>
 
   <?php include('nav.php'); ?>
+  <?php include('jumbotron/page1.php')?>
 
   <div class="container mt-3">
     <?php include('echo_alert.php') ?>
@@ -41,8 +42,9 @@
       <div class="col-12 <?=($_GET['show']!='list')?'d-none ':''; ?> ">
         <?php
           if(isset($_GET['page'])){
-            $total = mysqli_num_rows($conn->query("SELECT * FROM PRODUCT WHERE ID='$user_id'")); // 共幾筆資料
-            $limit = 10; // 每頁5筆
+            $total = mysqli_num_rows($conn->query("SELECT * FROM PRODUCT WHERE ID='$user_id'&& CategoryID='1'")); // 共幾筆資料
+          
+            $limit = 5; // 每頁5筆
             $start = $_GET['page'] * $limit;
             $currentPage=$_GET['page'];
             $maxPage= ceil($total/$limit);
@@ -52,9 +54,9 @@
           <thead>
             <tr class="thead-dark text-center">
               <th scope="col" style="width:8rem">帳戶</th>
-              <th scope="col" style="width:4rem">金額</th>
+              <th scope="col" style="width:5rem">金額</th>
               <th scope="col" style="width:10rem" >圖片</th>
-              <th scope="col" style="width:10rem">介紹</th>
+              <th scope="col" style="width:8rem">介紹</th>
               <th scope="col" style="width:5rem">剩餘金額</th>
               <th scope="col" style="width:12rem">提款時間</th>
             </tr>
@@ -63,7 +65,7 @@
             <?php
             $sql = "SELECT * FROM PRODUCT WHERE ID='$user_id' && CategoryID = '1'";
             if(isset($_GET['page'])) // 若有GET到頁數
-               $sql .= " ORDER BY ID ASC LIMIT $start, $limit";
+               $sql .= " ORDER BY pid DESC LIMIT $start, $limit";
             $result = $conn->query($sql);
             if($result->num_rows > 0) {
               while($row = $result->fetch_assoc()){
@@ -72,11 +74,11 @@
 
                 echo
                 '<tr class= "text-center">
-                <td><a class="text-dark" href="cash_detail.php?ID='.  $row["ID"] .'">' . $row["Name"] . '</a></td>
-                <td>' . $row["Price"] . '</td>
+                <td><a class="text-dark" href="cash_detail.php?ID='.  $row["pid"] .'">' . $row["Name"] . '</a></td>
+                <td>' . 'NT$ '.$row["Price"] . '</td>
                 <td class="text-center"> <img src ="' .$row['Img'] . '" class="img-fluid" style="max-height:5rem"></td>
                 <td>' . $row["Info"] . '</td>
-                <td>' . $row["total"] . '</td>
+                <td>' . 'NT$ '.$row["total"] . '</td>
                 <td>'. $row['ptime'] .'</td>
 
                 

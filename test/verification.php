@@ -27,4 +27,3 @@ if(isset($_SESSION['ID'])){ // 若已登入
   $user_money = $rows['Money'];       // 存款
 }
 
-
