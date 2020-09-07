@@ -28,7 +28,7 @@ margin: 40px;
             </div>
             <div class="col-12 form-group">
               <label for="">帳號</label>
-              <input id="LoginID" value="admin" type="text" placeholder="帳號" class="form-control" required>
+              <input id="LoginID" value="" type="text" placeholder="帳號" class="form-control" required>
               <small id="NoSuchID" class="text-warning d-none"></small>
             </div>
             <div class="col-12 form-group">
@@ -36,10 +36,10 @@ margin: 40px;
             <div id="page_container">
               <div class="input_block">
                 <img id="demo_img" class="aaa" onclick="hideShowPsw()" src="visible.png">
-                <input id="LoginPW" value="pw" type="password" placeholder="密碼" class="form-control" required/>
+                <input id="LoginPW" value="" type="password" placeholder="密碼" class="form-control" required/>
               </div>
             </div>
-              <small class="text-muted">萬用密碼'pw'</small>
+              <br>
             </div>
             <div class="col-12 form-group">
               <button id="login" class="btn btn-primary btn-block" type="button">LOGIN</button>

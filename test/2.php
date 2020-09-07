@@ -18,7 +18,7 @@
     function imgcode($nums,$width,$high) {
        
         //去除了數字0和1 字母小寫O和L，為了避免辨識不清楚
-        $str = "23456789abcdefghijkmnpqrstuvwxyzABCDEFGHIJKLMOPQRSTUBWXYZ";
+        $str = "23456789";
         $code = '';
         for ($i = 0; $i < $nums; $i++) {
             $code .= $str[mt_rand(0, strlen($str)-1)];

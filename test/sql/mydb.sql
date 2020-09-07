@@ -10,8 +10,7 @@ CREATE TABLE MEMBER(
   RegDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   Birth DATE,
   Gender ENUM('M', 'F', 'N'),
-  Address VARCHAR(100),
-  Position ENUM('S', 'A', 'C') NOT NULL
+  Address VARCHAR(100)
 );
 
 -- 提款;

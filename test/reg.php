@@ -28,12 +28,12 @@
               </div>
               <div class="col-12 form-group">
                 <label>帳號 <span class="text-info">*</span></label>
-                <input type="text" value="newbie" name="ID" placeholder="Username" maxlength="20" class="form-control" required>
+                <input type="text" value="" name="ID" placeholder="Username" maxlength="20" class="form-control" required>
                 <small id="IDIsDuplicate" class="text-warning d-none"></small>
               </div>
               <div class="col-12 form-group">
                 <label>密碼 <span class="text-info">*</span></label>
-                <input type="password" value="newbie" name="Password" placeholder="Password" maxlength="20" class="form-control" required>
+                <input type="password" value="" name="Password" placeholder="Password" maxlength="20" class="form-control" required>
               </div>
               <div class="col-12 form-group">
                 <label>姓名 <span class="text-info">*</span></label>
@@ -71,7 +71,6 @@
         </div>
       </div>
     </div>
-
   </div>
   <?php include('footer.php') ?>
 </body>

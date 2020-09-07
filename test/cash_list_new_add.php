@@ -53,7 +53,7 @@
 
       }
       $result = $conn->query($sql);
-      if ((int)$total >= 0 && (int)$price <= 50000){
+      if ((int)$total >= 0 && (int)$price <= 500000){
       $sql = "INSERT INTO PRODUCT
               VALUE(null,'$user_id', '$name', $price, $total, '$target_file', '$info', '$ptime',1)";
       }
@@ -64,7 +64,7 @@
         WHERE ID ='$user_id';";
         $conn->query($sql);
       }else{
-        $_SESSION['AlertMsg'] = array('danger','<i class="material-icons">block</i> 單筆不能超過50000！或 沒錢啦！！！',false);
+        $_SESSION['AlertMsg'] = array('danger','<i class="material-icons">block</i> 單筆不能超過50萬！或 沒錢啦！！！',false);
       }
    ?>
    <?php include('footer.php') ?>

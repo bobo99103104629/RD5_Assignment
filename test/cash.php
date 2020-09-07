@@ -30,7 +30,7 @@
           ?>
           <a href="cash_list_mi.php" class="list-group-item list-group-item-action"><i class="material-icons">money</i> 我要提款</a>
           <a href="money_list.php" class="list-group-item list-group-item-action"><i class="material-icons">local_atm</i> 我要存款</a>
-          <a href="cash_total.php" class="list-group-item list-group-item-action"><i class="material-icons">local_atm</i> 我要存款</a>
+          <a href="cash_total.php" class="list-group-item list-group-item-action"><i class="material-icons">local_atm</i> 查詢記錄</a>
           <?php
             $sql = "SELECT CID, CName, COUNT(*) CNum
                     FROM PRODUCT_VIEW WHERE PID='$user_id'GROUP BY CID
