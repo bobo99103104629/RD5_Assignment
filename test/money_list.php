@@ -54,7 +54,7 @@
               <th scope="col" style="width:8rem">帳戶</th>
               <th scope="col" style="width:4rem">金額</th>
               <th scope="col" style="width:10rem" >圖片</th>
-              <th scope="col" style="width:10rem">介紹</th>
+              <th scope="col" style="width:10rem">簡介</th>
               <th scope="col" style="width:5rem">剩餘金額</th>
               <th scope="col" style="width:12rem">存款時間</th>
             </tr>

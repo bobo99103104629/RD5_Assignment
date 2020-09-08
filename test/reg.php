@@ -29,7 +29,7 @@
               <div class="col-12 form-group">
                 <label>帳號 <span class="text-info">*</span></label>
                 <input type="text" value="" name="ID" placeholder="Username" maxlength="20" class="form-control" required>
-                <small id="IDIsDuplicate" class="text-warning d-none"></small>
+                <small id="IDIsDuplicate" class="text-success d-none"></small>
               </div>
               <div class="col-12 form-group">   
               <label>密碼 <span class="text-info">*</span></label>           
@@ -126,9 +126,10 @@ $("input[name='ID']").change(function(){
   },
   function(data,status){
     if(data=='pwerr'){
-      $('#IDIsDuplicate').html('<i class="material-icons" style="font-size:.8rem">clear</i> 帳號已被使用!').removeClass('d-none');
-    }else{
       $('#IDIsDuplicate').html('').addClass('d-none')
+
+    }else{
+      $('#IDIsDuplicate').html('<i class="material-icons" style="font-size:.8rem">done</i> 帳號可以使用!').removeClass('d-none');
     }
   });
 });
