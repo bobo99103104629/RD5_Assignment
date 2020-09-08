@@ -15,7 +15,7 @@
         <div class="col-12 col-lg-6 form-group">
           <label>金額 <span class="text-info">*</span></label>
           <input type="number" value="250" name="Price" placeholder="" maxlength="5" class="form-control" required>
-            <small class="text-muted">單筆不得超過NT$50000</small>
+            <small class="text-muted">單筆不得超過NT$500萬</small>
         </div>
 
         <div class="col-12 form-group">

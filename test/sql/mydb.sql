@@ -10,7 +10,8 @@ CREATE TABLE MEMBER(
   RegDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   Birth DATE,
   Gender ENUM('M', 'F', 'N'),
-  Address VARCHAR(100)
+  Address VARCHAR(100),
+  Position ENUM('S', 'A', 'C') 
 );
 
 -- 提款;
@@ -34,7 +35,6 @@ CREATE TABLE CATEGORY(
   ID INT(7) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
   Name VARCHAR(10) NOT NULL UNIQUE
 );
-
 
 -- VIEW 視界;
 

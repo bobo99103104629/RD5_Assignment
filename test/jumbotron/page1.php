@@ -13,8 +13,8 @@
             $ff = str_repeat('*', mb_strlen($user_money, 'utf-8') );
             ?>
               <div id="app">
-              <div v-if="!login"><h1>當前存款：NT$ <?=$user_money?></h1></div>
-		          <div v-if='login'><h1>當前存款：NT$ <?=$ff?></h1></div>
+              <div v-if="!login"><h1>當前存款：NT$ <?=$ff?></h1></div>
+		          <div v-if='login'><h1>當前存款：NT$ <?=$user_money?></h1></div>
               <button @click='toggleView'name='yy'>顯示或隱藏</button>
               </div>
             </div>

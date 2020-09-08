@@ -13,7 +13,7 @@
   <?php if($login) die ('<meta http-equiv="refresh" content="0;URL=index.php">'); ?>
   <?php require_once ('js.php') ?>
 </head>
-
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
 <body>
   <?php include('nav.php'); ?>
   <div class="container my-3">
@@ -31,9 +31,23 @@
                 <input type="text" value="" name="ID" placeholder="Username" maxlength="20" class="form-control" required>
                 <small id="IDIsDuplicate" class="text-warning d-none"></small>
               </div>
-              <div class="col-12 form-group">
-                <label>密碼 <span class="text-info">*</span></label>
-                <input type="password" value="" name="Password" placeholder="Password" maxlength="20" class="form-control" required>
+              <div class="col-12 form-group">   
+              <label>密碼 <span class="text-info">*</span></label>           
+              <input type="password" id="pwd" value="" name="Password" placeholder="Password" maxlength="20" class="form-control" required>
+              <i class="fa fa-eye" onclick="showhide()" id="eye"></i>
+              <script type="text/javascript">
+                var eye = document.getElementById("eye");
+                var pwd = document.getElementById("pwd");
+                  function showhide(){
+                    if (pwd.type == "password") {
+                          pwd.type = "text";
+                          eye.className='fa fa-eye-slash'
+                    }else {
+                          pwd.type = "password";
+                          eye.className='fa fa-eye'
+                    }
+                  }
+              </script>
               </div>
               <div class="col-12 form-group">
                 <label>姓名 <span class="text-info">*</span></label>

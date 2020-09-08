@@ -32,7 +32,7 @@ margin: 40px;
               <small id="NoSuchID" class="text-warning d-none"></small>
             </div>
             <div class="col-12 form-group">
-            <label for="">帳號</label>
+            <label for="">密碼</label>
             <div id="page_container">
               <div class="input_block">
                 <img id="demo_img" class="aaa" onclick="hideShowPsw()" src="visible.png">

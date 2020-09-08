@@ -10,7 +10,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <?php include('style.php') ?>
   <title><?php echo  $page_name ?></title>
-  <meta http-equiv="refresh" content="<?php echo 0 ?>;URL=cash_list.php">
+  <meta http-equiv="refresh" content="<?php echo 0 ?>;URL=cash_list_mi.php">
   <?php require_once ('js.php') ?>
 </head>
 <body>
@@ -53,7 +53,7 @@
 
       }
       $result = $conn->query($sql);
-      if ((int)$total >= 0 && (int)$price <= 500000){
+      if ((int)$total >= 0 && (int)$price <= 5000000){
       $sql = "INSERT INTO PRODUCT
               VALUE(null,'$user_id', '$name', $price, $total, '$target_file', '$info', '$ptime',1)";
       }
@@ -64,7 +64,7 @@
         WHERE ID ='$user_id';";
         $conn->query($sql);
       }else{
-        $_SESSION['AlertMsg'] = array('danger','<i class="material-icons">block</i> 單筆不能超過50萬！或 沒錢啦！！！',false);
+        $_SESSION['AlertMsg'] = array('danger','<i class="material-icons">block</i> 單筆不能超過500萬！或 沒錢啦！！！',false);
       }
    ?>
    <?php include('footer.php') ?>
