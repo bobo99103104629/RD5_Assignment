@@ -42,13 +42,10 @@ CREATE TABLE CATEGORY(
 
 DROP VIEW IF EXISTS PRODUCT_VIEW;
 
--- 為了簡化在php中的查詢指令，建此VIEW把 PRODUCT, CATEGORY, DISCOUNT 合併成一表。;
--- PPrice: 原始價格 / PPriceDiscount: 折扣後價格，如果沒有折扣或者在期限外則為NULL;
--- PPriceF: 加入逗號的原始價格 / PPriceDiscount: 加入逗號的折扣後價格，同上。;
 
 CREATE VIEW PRODUCT_VIEW
-AS SELECT P.pid PP ,P.ID PID ,P.Name PName, P.Info PInfo, P.Img PImg,
-          C.Name CName, C.ID CID,P.Price PPriceF,P.total Ptotal,P.ptime Ptime
+AS SELECT P.pid PP ,P.ID PID ,P.Number Number ,P.Number2 Number2 ,P.Name PName ,P.Info PInfo ,P.Img PImg ,
+          C.Name CName ,C.ID CID ,P.Price PPriceF ,P.total Ptotal ,P.ptime Ptime
            FROM PRODUCT P
            INNER JOIN CATEGORY C ON P.CategoryID = C.ID
            WHERE P.CategoryID = C.ID

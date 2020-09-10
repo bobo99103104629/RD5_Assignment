@@ -16,7 +16,7 @@
           <label>分行代號 <span class="text-info">*</span></label>
           <input value="1234567" type="text" name="Number2" placeholder="存款名稱" maxlength="8" class="form-control" onkeyup="this.value=this.value.replace(/\D/g,'').replace(/....(?!$)/g,'$& ')" required>
         </div>
-      <div class="col-12 form-group">
+      <div class="col-12 col-lg-9 form-group">
           <label>存款帳號 <span class="text-info">*</span></label>
           <input value="1234567" type="text" name="Name" placeholder="存款名稱" maxlength="8" class="form-control" onkeyup="this.value=this.value.replace(/\D/g,'').replace(/....(?!$)/g,'$& ')" required>
         </div>

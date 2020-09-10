@@ -40,6 +40,10 @@ $page_name = mysqli_fetch_array($conn->query($sql))['PName'];
               </div>
               <div class="col-12 col-lg-8">
                 <div class="mb-3">
+                <h5 class="text-center text-lg-left d-inline"><?php echo $rows['Number']; ?></h5>
+                <a>-</a>
+                <h5 class="text-center text-lg-left d-inline"><?php echo $rows['Number2']; ?></h5>
+                <br>
                   <h2 class="text-center text-lg-left d-inline"><?php echo $rows['PName']; ?></h2>
                   <span class="badge badge-dark badge-pill mx-2"><?php echo $rows['CName']; ?></span>
                   <span class="text-primary"><?php echo 'ID:'.$user_id; ?></span>
@@ -70,7 +74,6 @@ $page_name = mysqli_fetch_array($conn->query($sql))['PName'];
                   </div>
                 </div>
                 <hr class="my-4">
-                <!-- 評論 -->
               </div>
             </div>
           </div>
