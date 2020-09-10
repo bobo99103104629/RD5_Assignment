@@ -8,9 +8,17 @@
     <div class="card-header text-center">存款</div>
     <div class="card-body">
       <form class="row" action="money_list_new_add.php" method="post" enctype="multipart/form-data" >
-        <div class="col-12 form-group">
-          <label>存款帳戶 <span class="text-info">*</span></label>
-          <input value="xxx－xxxxxxx－xxxxxxx" type="text" name="Name" placeholder="存款名稱" maxlength="20" class="form-control" required>
+      <div class="col-12 col-lg-3 form-group">
+          <label>代號 <span class="text-info">*</span></label>
+          <input value="700" type="text" name="Number" placeholder="存款名稱" maxlength="3" class="form-control" onkeyup="this.value=this.value.replace(/\D/g,'').replace(/....(?!$)/g,'$& ')" required>
+        </div>
+        <div class="col-12 col-lg-6 form-group">
+          <label>分行代號 <span class="text-info">*</span></label>
+          <input value="1234567" type="text" name="Number2" placeholder="存款名稱" maxlength="8" class="form-control" onkeyup="this.value=this.value.replace(/\D/g,'').replace(/....(?!$)/g,'$& ')" required>
+        </div>
+      <div class="col-12 form-group">
+          <label>存款帳號 <span class="text-info">*</span></label>
+          <input value="1234567" type="text" name="Name" placeholder="存款名稱" maxlength="8" class="form-control" onkeyup="this.value=this.value.replace(/\D/g,'').replace(/....(?!$)/g,'$& ')" required>
         </div>
         <div class="col-12 col-lg-6 form-group">
           <label>金額 <span class="text-info">*</span></label>

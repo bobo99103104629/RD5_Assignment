@@ -19,6 +19,8 @@
   //設定地點為台北時區
   date_default_timezone_set('Asia/Taipei');
       include ('connection.php');
+      $number = $_POST['Number'];
+      $number2 = $_POST['Number2'];
       $name = $_POST['Name'];
       $price = $_POST['Price'];
       $info = $_POST['Info'];
@@ -55,7 +57,7 @@
       $result = $conn->query($sql);
       if((int)$total  >= 0 && (int)$price <= 5000000){
         $sql = "INSERT INTO PRODUCT
-              VALUE(null,'$user_id', '$name', $price, '$total', '$target_file', '$info', '$ptime','2')";
+              VALUE(null,'$user_id', $number, $number2, $name, $price, '$total', '$target_file', '$info', '$ptime','2')";
       }
       
       if ($conn -> query($sql) === TRUE){

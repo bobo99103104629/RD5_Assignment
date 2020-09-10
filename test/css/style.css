@@ -33,24 +33,8 @@ i.material-icons{
   color: #eee;
 }
 
-.star{
-  vertical-align: top;
-}
 
-.star i.material-icons{
-  color: #FFBA0C;
-  font-size: 1rem;
-}
-
-.discount{
-  transition: opacity .3s;
-}
-
-.discount:hover{
-  opacity: .8;
-}
-
-/* product.php的各個商品card樣式 */
+/* cash.php的各個商品card樣式 */
 .product-item .card{
   transition: all .3s;
 }
